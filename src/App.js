@@ -16,4 +16,6 @@ const App = () => {
   );
 }
 
+
+const myName = 'Gabe'
 export default App;
