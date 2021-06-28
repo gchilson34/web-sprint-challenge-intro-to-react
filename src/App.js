@@ -1,21 +1,26 @@
 import React, { useState, useEffect }from 'react';
 import './App.css';
 import axios from 'axios';
-import { Character } from './Character'
+// import { Character } from './Character'
 
 
 
 
 const App = () => {
-  const [characters, setCharacters] = useState('')
+  const [characters, setCharacters] = useState([])
 
   useEffect(() => {
     axios
       .get("https://swapi.dev/api/people")
-      .then(res => setCharacters(res.data.name));
+      .then(({data}) => setCharacters(data))
+      .catch(err => console.log('Error getting characters: ', err))
   }, []);
 
-  
+  const Character = props => (
+    <div className='character'>
+      {props.info.name}
+    </div>
+  )
 
  
   
@@ -29,7 +34,12 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
-      < Character />  
+      {
+        characters.map(char => {
+          return <Character key={char.id} info={char} />
+        }
+          )
+      }
     </div>
   );
 }
