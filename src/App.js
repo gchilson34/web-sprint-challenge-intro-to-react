@@ -1,7 +1,8 @@
 import React, { useState, useEffect }from 'react';
 import './App.css';
 import axios from 'axios';
-// import { Character } from './Character'
+import styled from 'styled-components'
+
 
 
 
@@ -17,12 +18,10 @@ const App = () => {
   }, []);
 
   const Character = props => (
-    <div className='character'>
+    <Container>
       {props.info.name}
-    </div>
+    </Container>
   )
-
- 
   
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
@@ -44,4 +43,14 @@ const App = () => {
   );
 }
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px;
+  color: white;
+  justify-content: space-between;
+  font-size: 30px;
+`
 export default App;
